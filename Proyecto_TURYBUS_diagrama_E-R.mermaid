@@ -1,0 +1,86 @@
+erDiagram
+    RUTA {
+        int id_ruta PK
+        string nombre
+        decimal importe_fijo
+        int promedio_pasajeros
+        string descripcion
+    }
+    
+    SERVICIO_DIARIO {
+        int id_servicio PK
+        time hora_salida
+        int promedio_pasajeros
+        string dias_programados
+    }
+    
+    PARADA {
+        int id_parada PK
+        string nombre_lugar
+        time llegada_prevista
+        string actividad
+        int duracion_parada
+        int orden_parada
+    }
+    
+    VIAJE {
+        int id_viaje PK
+        date fecha_viaje
+        time fecha_hora_salida
+        time llegada_prevista
+    }
+    
+    PASAJERO {
+        string id_pasajero PK
+        string nombres
+        string apellidos
+        string telefono
+        int total_horas
+    }
+    
+    BILLETE {
+        int id_billete PK
+        decimal importe
+        date fecha_compra
+    }
+    
+    AUTOBUS {
+        string id_matricula PK
+        string modelo
+        string fabricante
+        int numero_asientos
+        string caracteristicas
+        int kilometros_diarios
+    }
+    
+    CONDUCTOR {
+        string id_DNI PK
+        string nombres
+        string apellidos
+        string telefono
+        string direccion
+        int kilometros_diarios
+    }
+    
+    REVISION {
+        int id_revision PK
+        date fecha_revision
+        string diagnostico
+    }
+    
+    REPARACION {
+        int id_reparacion PK
+        string codigo_reparacion
+        int duracion_reparacion
+        string comentarios
+    }
+
+    RUTA ||--o{ SERVICIO_DIARIO : "tiene"
+    RUTA ||--o{ PARADA : "incluye"
+    SERVICIO_DIARIO ||--o{ VIAJE : "genera"
+    VIAJE ||--o{ BILLETE : "emite"
+    PASAJERO ||--o{ BILLETE : "compra"
+    SERVICIO_DIARIO ||--|| AUTOBUS : "asigna"
+    SERVICIO_DIARIO ||--|| CONDUCTOR : "asigna"
+    AUTOBUS ||--o{ REVISION : "se somete a"
+    REVISION ||--o{ REPARACION : "requiere"
