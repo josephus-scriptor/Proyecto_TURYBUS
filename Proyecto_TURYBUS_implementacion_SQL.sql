@@ -1,4 +1,4 @@
--- Crear la Base de Datos
+-- Crear la Base de Datos como etapa exploratoria
 CREATE DATABASE TURYBUS;
 GO
 
